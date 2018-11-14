@@ -1,7 +1,7 @@
 apiVersion: v1
 kind: Service
 metadata:
-  name: "tobesliberty-service"
+  name: "libertytobes-service"
 spec:
   # if your cluster supports it, uncomment the following to automatically create
   # an external load-balanced IP for the frontend service.
@@ -15,12 +15,12 @@ spec:
     port: 9443
 
   selector:
-    app: "tobesliberty-selector"
+    app: "libertytobes-selector"
 ---
 apiVersion: extensions/v1beta1
 kind: Deployment
 metadata:
-  name: "tobesliberty-deployment"
+  name: "libertytobes-deployment"
 spec:
   # this replicas value is default
   # modify it according to your case
@@ -28,14 +28,14 @@ spec:
   template:
     metadata:
       labels:
-        app: "tobesliberty-selector"
+        app: "libertytobes-selector"
     spec:
       containers:
-      - name: tobesliberty
-        image: tobesliberty:latest
+      - name: libertytobes
+        image: libertytobes:latest
         readinessProbe:
           httpGet:
-            path: /tobesliberty/health
+            path: /libertytobes/health
             port: 9080
           initialDelaySeconds: 20
         # resources:
